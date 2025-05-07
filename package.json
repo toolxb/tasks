@@ -1,0 +1,16 @@
+{
+  "name": "tasks",
+  "version": "1.0.0",
+  "description": "A tasks review",
+  "main": "gulpfile.js",
+  "scripts": {
+    "tasks": "gulp"
+  },
+  "author": "Angel Aguilar",
+  "license": "ISC",
+  "devDependencies": {
+    "fs-extra": "^11.3.0",
+    "gulp": "^5.0.0"
+  },
+  "type": "commonjs"
+}
