@@ -10,7 +10,11 @@
   "license": "ISC",
   "devDependencies": {
     "fs-extra": "^11.3.0",
-    "gulp": "^5.0.0"
+    "gulp": "^5.0.0",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-tap": "^2.0.0",
+    "webp-converter": "^2.3.3"
   },
   "type": "commonjs"
 }
