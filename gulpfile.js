@@ -1,5 +1,5 @@
 "use strict"
-const { task, src, dest, watch, series } = require("gulp");
+const { src, watch, series } = require("gulp");
 const {ensureDir} = require("fs-extra");
 const imagemin = require("gulp-imagemin");
 const webp = require("webp-converter");
@@ -28,7 +28,7 @@ const dirTask = () => {
 
 const imagesTask = () => {
   return src(`${jsonPaths.images.input}**/*`)
-    .pipe(imagemin({ verbose: false }))
+    .pipe(imagemin({ verbose: true }))
     .pipe(tap(function (file) {
       const fileExt = file.extname;
       const fileName = file.stem;
@@ -36,9 +36,11 @@ const imagesTask = () => {
         webp.gwebp(file.path, jsonPaths.images.output + file[0] + '.webp')
       else
         webp.cwebp(file.path, jsonPaths.images.output + fileName + '.webp', '-q 80')
-      
-      console.log(`File has been proccessed: ${fileName}.webp`)
     }))
 }
 
-exports.default = series(dirTask, imagesTask)
+const watcher = () => {
+  return watch(`${jsonPaths.images.input}**/*`,{ events: "all"}, series(imagesTask))
+}
+
+exports.default = series(dirTask, imagesTask, watcher)
